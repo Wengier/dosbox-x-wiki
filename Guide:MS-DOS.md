@@ -123,13 +123,16 @@ You probably don't want to memorize those last two commands, so do yourself a fa
 ## Creating a DOS 3.3 HDD image
 Creating a DOS 3.3 HDD image is nearly identical to that of DOS 3.0-3.2 above with a few small notes
 - DOSBox-X does not support creating Extended partitions
-- The maximum HDD size is now 504MB but since DOSBox-X does not support Extended partitions, you are effectively still limited to 32MB.
+- The maximum HDD size is now 504MB but since DOSBox-X does not support Extended partitions, you are effectively limited to 32MB per image.
+- DOS 3.3 does not suffer from the 31MB issue, so you can actually have a 32MB image.
 - After you have created your image, due to the newer style partition layout, which DOSBox-X can autodetect, you do not have to specify the geometry to mount the image. So your can boot from the HDD image with the following commands instead.
 
 ```
 IMGMOUNT C hdd.img
 BOOT -L C
 ```
+
+<img src="images/MS-DOS:MS-DOS_3.3_BOOT_HDD.png" width="640" height="400" alt="Boot PC-DOS 3.3 from HDD"><br>
 
 ## Creating a PC-DOS 4.0 HDD image
 TBD...
