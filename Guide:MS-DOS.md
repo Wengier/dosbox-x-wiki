@@ -54,6 +54,7 @@ Booting DOS from a disk image is pretty straight forward. Start DOSBox-X and you
  BOOT dos.img
 ```
 Assuming that dos.img is an uncompressed DOS disk image in your current working directory, it should start it. This even works for IBM PC-DOS 1.00.
+
 <img src="images/MS-DOS:PC-DOS_1.0.png" width="640" height="400" alt="Booting a PC-DOS 1.00 diskette image"><br>
 ## Creating a DOS 2.0 HDD image
 TBD...
