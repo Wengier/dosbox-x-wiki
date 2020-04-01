@@ -114,6 +114,8 @@ BOOT -L C
 ```
 You probably don't want to memorize those last two commands, so do yourself a favour and create yourself a DOSBox-X .conf file and place those commands in the [autoexec] section of that config file.
 
+<img src="images/MS-DOS:PC-DOS_3.2_BOOT_HDD.png" width="640" height="400" alt="Boot PC-DOS 3.2 from HDD"><br>
+
 ## Creating a DOS 3.3 HDD image
 Creating a DOS 3.3 HDD image is nearly identical to that of DOS 3.0-3.2 above with a few small notes
 - DOSBox-X does not support creating Extended partitions
@@ -124,8 +126,6 @@ Creating a DOS 3.3 HDD image is nearly identical to that of DOS 3.0-3.2 above wi
 IMGMOUNT C hdd.img
 BOOT -L C
 ```
-
-<img src="images/MS-DOS:PC-DOS_3.2_BOOT_HDD.png" width="640" height="400" alt="Boot PC-DOS 3.2 from HDD"><br>
 
 ## Creating a PC-DOS 4.0 HDD image
 TBD...
