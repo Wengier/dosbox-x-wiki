@@ -164,7 +164,7 @@ If you decide to do just an absolute minimal install, and effectively skip the M
 
 ```
  IMGMAKE hdd.img -t hd -size 32 -nofs
- IMGMOUNT C hdd.img -fs none
+ IMGMOUNT 2 hdd.img -fs none
 ```
 Now you need to boot from the first MS-DOS 4.0x disk, which is called either Setup or Install depending on the media type.
 ```
@@ -182,26 +182,26 @@ and run the following command:
 ```
  FDISK
 ```
-Now select option 1 to create a DOS partition
-
 <img src="images/MS-DOS:MS-DOS_4.01_FDISK.png" width="640" height="400" alt="MS-DOS 4.01 FDISK"><br>
 
-Followed by option 1 to create a Primary DOS Partition
+Now select option 1 to create a DOS partition
 
 <img src="images/MS-DOS:MS-DOS_4.01_FDISK2.png" width="640" height="400" alt="MS-DOS 4.01 FDISK"><br>
 
-Confirm you want to use the maximum available size
+Followed by option 1 to create a Primary DOS Partition
 
 <img src="images/MS-DOS:MS-DOS_4.01_FDISK3.png" width="640" height="400" alt="MS-DOS 4.01 FDISK"><br>
 
-And finally press any key to restart, to go back to the DOSBox-Z ``Z:\>`` prompt.
+Confirm you want to use the maximum available size
 
 <img src="images/MS-DOS:MS-DOS_4.01_FDISK4.png" width="640" height="400" alt="MS-DOS 4.01 FDISK"><br>
+
+And finally press any key to restart, to go back to the DOSBox-Z ``Z:\>`` prompt.
 
 At this point your image file is partitioned, but still needs to be formatted and made bootable. We first need to execute the exact same ``IMGMOUNT`` and ``BOOT`` commands from before.
 
 ```
-IMGMOUNT C hdd.img -fs none
+IMGMOUNT 2 hdd.img -fs none
 BOOT SETUP.IMG
 ```
 You can now FORMAT the C: drive with the /S switch to transfer the system files.
@@ -209,6 +209,8 @@ You can now FORMAT the C: drive with the /S switch to transfer the system files.
 <img src="images/MS-DOS:MS-DOS_4.01_FORMAT.png" width="640" height="400" alt="MS-DOS 4.01 FORMAT"><br>
 
 The HDD image is now bootable and you can optionally copy some of the DOS utilities from the diskette to the HDD and create your ``CONFIG.SYS`` and ``AUTOEXEC.BAT``.
+
+<img src="images/MS-DOS:MS-DOS_4.01_BOOT_HDD.png" width="640" height="400" alt="MS-DOS 4.01 HDD Boot"><br>
 
 ### Full install from 3.5" media
 First of all the MS-DOS 4.0x installer can corrupt its own installation diskettes, as such you should change the permission of the disk images in the host OS such that the image files are READ-ONLY. In turn DOSBox-X will treat them as if the disks have the write-protect set.
