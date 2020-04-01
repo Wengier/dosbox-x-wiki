@@ -77,6 +77,7 @@ You are now ready to boot the DOS diskette image:
  BOOT dos.img
 ```
 Assuming that your uncompressed DOS 3.0-3.2 image is named dos.img and in your current working directory, it should boot DOS from the disk image.
+
 <img src="images/MS-DOS:PC-DOS_3.2_BOOT.png" width="640" height="400"><br>
 These early DOS versions did not have an installer, so the preparation and installation is a manual process. You need to start with creating partitions.
 
