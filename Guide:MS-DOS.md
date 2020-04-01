@@ -196,7 +196,7 @@ Confirm you want to use the maximum available size
 
 <img src="images/MS-DOS:MS-DOS_4.01_FDISK4.png" width="640" height="400" alt="MS-DOS 4.01 FDISK"><br>
 
-And finally press any key to restart, to go back to the DOSBox-Z ``Z:\>`` prompt.
+And finally press any key to restart, to go back to the DOSBox-X ``Z:\>`` prompt.
 
 At this point your image file is partitioned, but still needs to be formatted and made bootable. We first need to execute the exact same ``IMGMOUNT`` and ``BOOT`` commands from before.
 
