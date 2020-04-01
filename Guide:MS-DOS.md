@@ -114,6 +114,10 @@ BOOT -L C
 ```
 You probably don't want to memorize those last two commands, so do yourself a favour and create yourself a DOSBox-X .conf file and place those commands in the [autoexec] section of that config file.
 
+<i>Note:</i> You may notice that instead of using "2", we are now using "C". This is because the image is now partitioned and formatted and DOSBox is able to find the partition within it. The advantage of being able to address it as "C" is that you can access the files inside the HDD image from the DOSBox-X integrated DOS, making it easier to transfer files.
+
+<i>Note 2:</i> Unfortunately we do still need to specify the drive geometry as DOSBox-X cannot autodetect it for DOS versions prior to 3.3.
+
 <img src="images/MS-DOS:PC-DOS_3.2_BOOT_HDD.png" width="640" height="400" alt="Boot PC-DOS 3.2 from HDD"><br>
 
 ## Creating a DOS 3.3 HDD image
