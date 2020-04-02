@@ -16,10 +16,11 @@ This document assumes that you have PC-DOS or MS-DOS disk images. Getting these 
 ### DOS versions
 Unless noted otherwise, the PC-DOS and MS-DOS versions are equivalent for this document. There are various limitations that DOS imposes that are dependant on the version. A few milestones:
 
-- PC-DOS version 1.0, supports only diskettes, and only up to 160kB
+- PC-DOS version 1.0, supports only 5.25" 8-sector 160KB (SSDD) diskettes
+- PC-DOS version 1.1, adds support for 5.25" 8-sector 320KB (DSDD) diskettes
 - MS-DOS version 1.25, first version available to other OEMs
 - DOS version 2.0
-  - First to support HDDs, capacity dependent on the vendor version (normally 16MB, sometimes 32MB with vendor specific tools)
+  - First to support HDDs up to 16MB (sometimes 32MB with vendor specific tools)
   - First to support 5.25" 180KB (SSDD) and 360KB disks (DSDD)
 - DOS version 3.0
   - First version to support FAT16 partitions up to 32MB
@@ -46,7 +47,7 @@ Unless noted otherwise, the PC-DOS and MS-DOS versions are equivalent for this d
   - First version to support LBA for HDDs up to 128GB (Windows 98 and 98SE only)
 
 ### DOS editions
-MS-DOS was licensed by many clone manufacturers and in the early days these OEM editions were often 'personalized' to the manufacturer, and therefore it is possible that these older OEM specific editions don't work in DOSBox-X. An example is the Tandy licensed version of MS-DOS, which will not work unless you set ``machine=tandy``.
+MS-DOS was licensed by many clone manufacturers and in the early days these OEM editions were often 'personalized' to the manufacturer, and therefore it is possible that these older OEM specific editions don't work in DOSBox-X.
 
 ## Booting DOS from disks
 Booting DOS from a disk image is pretty straight forward. Start DOSBox-X and you should find yourself at the DOSBox-X ``Z:\>`` prompt. This is not real DOS, but a 'simulated' DOS that is compatible with most DOS games and applications. Now type something equivalent to
@@ -57,15 +58,35 @@ Assuming that dos.img is an uncompressed DOS disk image in your current working 
 
 <img src="images/MS-DOS:PC-DOS_1.0.png" width="640" height="400" alt="Booting a PC-DOS 1.00 diskette image"><br>
 ## Creating a DOS 2.0 HDD image
+Maximum HDD size depends on the OEM version, and should be 16 or 32MB.
+
+|DOS|OEM|Maximum partition size|Note|
+|---|---|----------------------|----|
+|PC-DOS 2.00|IBM|32MB||
+|PC-DOS 2.10|IBM|32MB||
+
 TBD...
 
-## Creating a DOS 3.0-3.2 HDD image
-First you start DOSBox-X and create an empty HDD image file. Note that due to DOS limitations, the size cannot exceed 31MB, and you can only have a single DOS partition per HDD.
+## Creating a DOS 3.0-3.21 HDD image
+<i>Note:</i> The maximum partition size is supposed to be 32MB, but in reality this only is the case for PC-DOS 3.0 and 3.1. Other DOS versions are in practice limited to 31MB, or their ``FDISK`` tool is simply incompatible with DOSBox-X. For this reason the below examples will use 31MB for maximum compatibility between DOS versions.
 
-<i>Note:</i> Supposedly the maximum size is 32MB, but anything larger than 31 will fail to boot, this may be a DOSBox-X issue.
+|DOS|OEM|Maximum partition size|Note|
+|---|---|----------------------|----|
+|MS-DOS 3.10|Compaq|-|Incompatible FDISK|
+|MS-DOS 3.10|HP|31MB|Fails to boot from diskette, this can be circumvented by renaming CONFIG.SYS. FDISK hangs with 32MB|
+|MS-DOS 3.20|-|31MB|Will fail to boot with 32MB|
+|MS-DOS 3.20|Tandy|31MB|Format error, and will fail to boot with 32MB|
+|MS-DOS 3.21|-|31MB|Format error, and will fail to boot with 32MB|
+|PC-DOS 3.0|IBM|32MB||
+|PC-DOS 3.1|IBM|32MB||
+|PC-DOS 3.2|IBM|31MB|Will fail to boot with 32MB|
 
-<i>Note 2:</i> If you specify a size smaller then 31MB for the IMGMAKE command, pay close attention to the output of IMGMAKE as you will need to adjust the IMGMOUNT size parameter values accordingly.
+<i>Note 2:</i> If you specify a different size then 31MB for the ``IMGMAKE`` command, pay close attention to the output of ``IMGMAKE`` as you will need to adjust the ``IMGMOUNT`` size parameter values accordingly.
+
 The IMGMOUNT size parameter should have the format of: ``512,<sectors>,<heads>,<cylinders>``.
+
+First you need to start DOSBox-X and create an empty HDD image file.
+
 ```
  IMGMAKE hdd.img -t hd -size 31 -nofs
  IMGMOUNT 2 hdd.img -t hdd -size 512,32,2,992 -fs none
