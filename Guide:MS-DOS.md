@@ -43,6 +43,7 @@ Unless noted otherwise, the PC-DOS and MS-DOS versions are equivalent for this d
 - MS-DOS version 7.0 (included in Windows 95 and 95A)
   - First version to support VFAT
   - First version to allow up to 4GB RAM
+  - First version to support HDDs up to 32GB (CHS type only)
 - MS-DOS version 7.1 (included in Windows 95 OSR2, 98 and 98SE)
   - First version to support FAT32
   - First version to support LBA for HDDs up to 2TB (although FDISK requires patch to support HDD size greater than 64GB)
