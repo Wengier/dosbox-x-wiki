@@ -4,13 +4,15 @@ This guide explains how to boot regular IBM PC-DOS or Microsoft MS-DOS in DOSBox
 
 Before going through this guide, consider if you really need this as the integrated DOS functionality in DOSBox-X is more convenient for typical use-cases. Booting regular DOS is normally not necessary to run DOS applications such as games, or even Windows version up to 3.11 in DOSBox-X. And even if you have a application that requires a specific DOS version, you can change the reported version of the integrated DOS in DOSBox-X. There are two ways to change the DOS version:
 1. There is a setting "ver" under the [dos] section in dosbox.conf (or from the DOSBox-X Configuration GUI). For example, setting "ver = 7.10" will cause DOSBox-X to set the initial DOS version as 7.10, instead of the default 5.00. Note that LFN (long filename) support will be enabled when the initial version is set to 7.0 or higher.
-2. You can also set reported DOS version with the ``VER`` command in the DOSBox-X command line. For example, ``VER SET 6 22`` will cause DOSBox-X to claim to be version 6.22. Note that this method will only change the reported DOS version, but will not effect LFN support.
+2. You can also set the reported DOS version with the ``VER`` command in the DOSBox-X command line. For example, ``VER SET 6 22`` will cause DOSBox-X to claim to be version 6.22. Note that this method will only change the reported DOS version, but will not effect LFN support.
 
 Some disadvantages of booting regular DOS in DOSBox-X includes:
 - Inability to use the ``MOUNT`` command to access directories on the host filesystem. All storage will have to be in the form of images, and they need to be mounted using ``IMGMOUNT`` <b>before</b> using the ``BOOT`` command to boot regular DOS.
 - If you need to access a CD-ROM image you need to load a IDE CD-ROM driver
 - If you need a mouse, you need to load a mouse driver
 - Less free memory in the lower 640KB range, and having to tune available memory by selectively loading drivers high.
+- If you need XMS memory you need to load a driver (typically HIMEM.SYS)
+- If you need EMS memory you need to load a driver (typically EMM386.EXE)
 
 ## General guidelines
 This document assumes that you have PC-DOS or MS-DOS diskette images. Getting these image files is outside the scope of this document.
