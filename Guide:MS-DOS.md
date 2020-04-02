@@ -38,13 +38,12 @@ Unless noted otherwise, the PC-DOS and MS-DOS versions are equivalent for this d
   - First version to support 3.5" 2.88MB disks (ED)
   - First version to support HDDs up to 7.84GB
 - MS-DOS version 6.0 included an updated HIMEM.SYS XMS 3.x driver with support for up to 64MB RAM
-- MS-DOS version 7.0 (as part of Windows 95 and 95A)
+- MS-DOS version 7.0 (included in Windows 95 and 95A)
   - First version to support VFAT
   - First version to allow up to 4GB RAM
-  - First version to support LBA for HDDs up to 32GB
-- MS-DOS version 7.1 (as part of Windows 95 OSR2, 98 and 98SE)
+- MS-DOS version 7.1 (included in Windows 95 OSR2, 98 and 98SE)
   - First version to support FAT32
-  - First version to support LBA for HDDs up to 128GB (Windows 98 and 98SE only)
+  - First version to support LBA for HDDs up to 2TB (although FDISK requires patch to support HDD size greater than 64GB)
 
 ### DOS editions
 MS-DOS was licensed by many clone manufacturers and in the early days these OEM editions were often 'personalized' to the manufacturer, and therefore it is possible that these older OEM specific editions don't work in DOSBox-X.
