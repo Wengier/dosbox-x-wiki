@@ -14,6 +14,11 @@ Some disadvantages of booting regular DOS in DOSBox-X includes:
 - If you need XMS memory you need to load a driver (typically HIMEM.SYS)
 - If you need EMS memory you need to load a driver (typically EMM386.EXE)
 
+Some external link with useful information:
+- [https://www.vogonswiki.com/index.php/DOS_memory_management DOS memory management]
+- [https://www.computerhope.com/cdromd.htm CD-ROM driver help]
+- [https://www.computerhope.com/issues/ch000007.htm How to get a mouse to work in MS-DOS]
+
 ## General guidelines
 This document assumes that you have PC-DOS or MS-DOS diskette images. Getting these image files is outside the scope of this document.
 
