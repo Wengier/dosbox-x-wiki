@@ -7,13 +7,13 @@ Before going through this guide, consider if you really need this as the integra
 2. You can also set reported DOS version with the ``VER`` command in the DOSBox-X command line. For example, ``VER SET 6 22`` will cause DOSBox-X to claim to be version 6.22. Note that this method will only change the reported DOS version, but will not effect LFN support.
 
 Some disadvantages of booting regular DOS in DOSBox-X includes:
-- Inability to use the ``MOUNT`` command to access directories on the host filesystem. All storage will have to be in the form of images.
-- If you need to access a CD-ROM you need to load a driver
-- If you need a mouse, you need to load a driver
+- Inability to use the ``MOUNT`` command to access directories on the host filesystem. All storage will have to be in the form of images, and they need to be mounted using ``IMGMOUNT`` <b>before</b> using the ``BOOT`` command to boot regular DOS.
+- If you need to access a CD-ROM image you need to load a IDE CD-ROM driver
+- If you need a mouse, you need to load a mouse driver
 - Less free memory in the lower 640KB range, and having to tune available memory by selectively loading drivers high.
 
 ## General guidelines
-This document assumes that you have PC-DOS or MS-DOS disk images. Getting these images files is outside the scope of this document.
+This document assumes that you have PC-DOS or MS-DOS diskette images. Getting these image files is outside the scope of this document.
 
 ### DOS versions
 Unless noted otherwise, the PC-DOS and MS-DOS versions are equivalent for this document. There are various limitations that DOS imposes that are dependant on the version. A few milestones:
@@ -49,7 +49,7 @@ Unless noted otherwise, the PC-DOS and MS-DOS versions are equivalent for this d
   - First version to support LBA for HDDs up to 2TB, although FDISK requires patch to support HDD size greater than 64GB
 
 ### DOS editions
-MS-DOS was licensed by many clone manufacturers and in the early days these OEM editions were often 'personalized' to the manufacturer, and therefore it is possible that these older OEM specific editions don't work in DOSBox-X.
+MS-DOS was licensed by many clone manufacturers and in the early days these OEM editions were often 'personalized' to the manufacturer, and therefore it is possible that these older OEM specific editions don't work in DOSBox-X. Because of this, up to DOS version 3.3, it is typically easier to use the IBM PC-DOS versions in DOSBox-X.
 
 ## Booting DOS from disks
 Booting DOS from a disk image is pretty straight forward. Start DOSBox-X and you should find yourself at the DOSBox-X ``Z:\>`` prompt. This is not real DOS, but a 'simulated' DOS that is compatible with most DOS games and applications. Now type something equivalent to
@@ -89,7 +89,7 @@ TBD...
 
 The ``IMGMOUNT`` size parameter should have the format of: ``512,<sectors>,<heads>,<cylinders>``.
 
-First you need to start DOSBox-X and create an empty HDD image file.
+First you need to start DOSBox-X, and create an empty HDD image file.
 
 ```
  IMGMAKE hdd.img -t hd -size 31 -nofs
@@ -101,10 +101,10 @@ You are now ready to boot the DOS diskette image:
 ```
  BOOT dos.img
 ```
-Assuming that your uncompressed DOS 3.0-3.2 image is named dos.img and in your current working directory, it should boot DOS from the disk image.
+Assuming that your uncompressed DOS 3.0-3.2 image is named dos.img and in your current working directory, it should boot DOS from the diskette image.
 
 <img src="images/MS-DOS:PC-DOS_3.2_BOOT.png" width="640" height="400"><br>
-These early DOS versions did not have an installer, so the preparation and installation is a manual process. You need to start with creating partitions.
+These early DOS versions did not have an installer, so the preparation and installation is a manual process. You need to start with creating a DOS partition.
 
 Run ``FDISK`` and select option 1 to create a new DOS partition, and confirm you want to use the entire fixed disk for DOS.
 
