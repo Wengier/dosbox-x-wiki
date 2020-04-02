@@ -251,7 +251,7 @@ You first need to create a HDD disk image without partition and filesystem and m
 If you specify a different size value then 32MB for the IMGMAKE command, pay close attention to the output of IMGMAKE as you will need to adjust the IMGMOUNT size parameter values accordingly.
 The IMGMOUNT size parameter should be 512,<sectors>,<heads>,<cylinders>.
 
-During install, the installer will insist on a blank disk to be labelled "SELECT COPY". Unfortunately will it seems the installer should allow to use the B: drive for this purpose this does not seem to work in practice.
+During install, the installer will insist on a blank disk to be labelled "SELECT COPY". Unfortunately while it seems the installer should allow to use the B: drive for this purpose this does not seem to work in practice.
 ```
  IMGMAKE SELECT_COPY.IMG -t fd_720
  BOOT SETUP.IMG SELECT_COPY.IMG
@@ -270,7 +270,7 @@ Let the installer create the primary partition, and reset the guest system once 
 Notice how we have now specified all the disks on the BOOT line, plus the SELECT_COPY disk. You need to go through all the installer questions a second time, and again you need to create the backup copy. Once you get to the partition question, select to skip and the install will then ask for the Operating and finally (if you elected to install it) the Shell disk. After this it will ask to reset the computer, so use the Reset guest system option in DOSBox-X to go back to the ``Z:\>`` prompt.
 
 ### Full install from 5.25" media
-This process is basically the same as for the 3.5" media, but you have more disks and they are labelled differently.
+This process is basically the same as for the 3.5" media, but you have more disks and they are labelled differently. You will also need two blank disks.
 
 ### Booting MS-DOS 4.0x from HDD
 Now that you have created a bootable HDD image you can boot it from the DOSBox-X ``Z:\>`` prompt with the following commands:
