@@ -4,7 +4,7 @@ This guide explains how to boot regular IBM PC-DOS or Microsoft MS-DOS in DOSBox
 
 Before going through this guide, consider if you really need this as the integrated DOS functionality in DOSBox-X is more convenient for typical use-cases. Booting regular DOS is normally not necessary to run DOS applications such as games, or even Windows version up to 3.11 in DOSBox-X. And even if you have a application that requires a specific DOS version, you can change the reported version of the integrated DOS in DOSBox-X. There are two ways to change the DOS version:
 1. There is a setting "ver" under the [dos] section in dosbox.conf. For example, setting "ver = 7.10" will cause DOSBox-X to set the initial DOS version as 7.10, instead of the default 5.00. Note that LFN (long filename) support will be enabled when the initial version is set to 7.0 or higher.
-2. You can also set reported DOS version with the ``VER`` command in the DOSBox-X command line. For example, ``VER SET 6 22`` will cause DOSBox-X to claim to be version 6.22. Note that this method will only change the reported DOS version, but will not affact LFN support.
+2. You can also set reported DOS version with the ``VER`` command in the DOSBox-X command line. For example, ``VER SET 6 22`` will cause DOSBox-X to claim to be version 6.22. Note that this method will only change the reported DOS version, but will not effect LFN support.
 
 Some disadvantages of booting regular DOS in DOSBox-X includes:
 - Inability to use the ``MOUNT`` command to access directories on the host filesystem. All storage will have to be in the form of images.
@@ -46,7 +46,7 @@ Unless noted otherwise, the PC-DOS and MS-DOS versions are equivalent for this d
   - First version to support HDDs up to 32GB (CHS type only)
 - MS-DOS version 7.1 (included in Windows 95 OSR2, 98 and 98SE)
   - First version to support FAT32
-  - First version to support LBA for HDDs up to 2TB (although FDISK requires patch to support HDD size greater than 64GB)
+  - First version to support LBA for HDDs up to 2TB (although FDISK requires patch to support HDD size greater than 64GB
 
 ### DOS editions
 MS-DOS was licensed by many clone manufacturers and in the early days these OEM editions were often 'personalized' to the manufacturer, and therefore it is possible that these older OEM specific editions don't work in DOSBox-X.
@@ -70,7 +70,9 @@ Maximum HDD size depends on the OEM version, and should be 16 or 32MB.
 TBD...
 
 ## Creating a DOS 3.0-3.21 HDD image
-<i>Note:</i> The maximum partition size is supposed to be 32MB, but in reality this only is the case for PC-DOS 3.0 and 3.1. Other DOS versions are in practice limited to 31MB, or their ``FDISK`` tool is simply incompatible with DOSBox-X. For this reason the below examples will use 31MB for maximum compatibility between DOS versions.
+<i>Note:</i> The maximum partition size is supposed to be 32MB, but in reality this only appears to be the case for PC-DOS 3.0 and 3.1. Other DOS versions are in practice limited to either 31MB, or their ``FDISK`` tool is simply incompatible with DOSBox-X. For this reason the below examples will use 31MB for maximum compatibility between DOS versions.
+
+<i>Note:</i> While it is possible to specify a HDD size larger then the maximum partition size, this is not recommended as these DOS versions only support a maximum of one DOS partition per HDD. In effect, you will not be able to access the additional capacity from DOS, and it is therefore waisted space. In addition the ``FDISK`` option to use the entire fixed disk for DOS gets confused if the drive is larger then 32MB, and if used will create a drive that cannot be formatted.
 
 |DOS|OEM|Maximum partition size|Note|
 |---|---|----------------------|----|
@@ -85,7 +87,7 @@ TBD...
 
 <i>Note 2:</i> If you specify a different size then 31MB for the ``IMGMAKE`` command, pay close attention to the output of ``IMGMAKE`` as you will need to adjust the ``IMGMOUNT`` size parameter values accordingly.
 
-The IMGMOUNT size parameter should have the format of: ``512,<sectors>,<heads>,<cylinders>``.
+The ``IMGMOUNT`` size parameter should have the format of: ``512,<sectors>,<heads>,<cylinders>``.
 
 First you need to start DOSBox-X and create an empty HDD image file.
 
@@ -145,9 +147,8 @@ You probably don't want to memorize those last two commands, so do yourself a fa
 
 ## Creating a DOS 3.3 HDD image
 Creating a DOS 3.3 HDD image is nearly identical to that of DOS 3.0-3.2 above with a few small notes
-- DOSBox-X does not support creating Extended partitions
-- The maximum HDD size is now 504MB but since DOSBox-X does not support Extended partitions, you are effectively limited to 32MB per image.
-- DOS 3.3 does not suffer from the 31MB issue, so you can actually have a 32MB image.
+- DOS 3.3 introduced the partitioning scheme with primary, extended and logical partitions. However, DOSBox-X has only limited support for extended and logical partitions. You can create them, and when you boot your DOS image, you can access them. But when you ``IMGMOUNT`` the image in DOSBox-X, the integrated DOS will only be able to access the primary partition.
+- The maximum HDD size is now 504MB, but the maximum partition size is still only 32MB. Since DOSBox-X has only limited support for extended and logical partitions, it is recommended that you only create a single primary partition up to 32MB per HDD image. If you need multiple drives, you can create multiple images.
 - After you have created your image, due to the newer style partition layout, which DOSBox-X can autodetect, you do not have to specify the geometry to mount the image. So your can boot from the HDD image with the following commands instead.
 
 ```
@@ -161,7 +162,7 @@ BOOT -L C
 TBD...
 
 ## Creating a MS-DOS 4.0x HDD image
-First of all, consider if you really, really want to use MS-DOS 4.x as it was considered a very buggy release. If you decide to continue, and you have the choice, do yourself a favour and use the 3.5" version as it will minimize the amount of disk swapping required.
+First of all, consider if you really, really want to use MS-DOS 4.x as it was considered a very buggy release. If you decide to continue with a full install, and you have the choice, do yourself a favour and use the 3.5" version as it will minimize the amount of disk swapping required.
 
 MS-DOS 4.0x on 5.25" media consists of the following six disks
  - Install
@@ -178,9 +179,13 @@ MS-DOS 4.0x on 3.5" media consists of the following three disks
 
 OEM versions could have additional disks such as a Diagnostic disk.
 
-Starting with MS-DOS 4 the process to create a HDD image with DOSBox-X, should be easier. But unfortunately there is some kind of compatibility issue between DOSBox-X and the MS-DOS 4.0x installer. If you let DOSBox-X create a image that is already partitioned and formatted the MS-DOS 4.0x installer will not offer the option to install to the HDD.
+Like DOS 3.3 before it, MS-DOS 4.0x supports primary, extended and logical partitions. However, DOSBox-X has only limited support for extended and logical partitions. You can create them, and when you boot your DOS image, you can access them. But when you ``IMGMOUNT`` the image in DOSBox-X, the integrated DOS will only be able to access the primary partition.
 
-In these examples we still use a 32MB HDD. MS-DOS 4.0x supports HDDs up to 4,095MB split into two partitions of 2,047MB and 2,048MB respectively. Since DOSBox-X supports only HDD images with primary partitions, 2,047MB should be our effective maximum HDD size, but through testing it was found that the FORMAT command supplied with MS-DOS 4.0x cannot handle drives larger than 2,019MB. Larger values will result in format immediately exiting with a "Divide overflow" error.
+Be sure to use the -NOFS flag when creating an image with DOSBos's ``IMGMAKE``. If you don't, it will create a partitioned and formatted HDD image, which is incompatible with MS-DOS 4.0x. The MS-DOS 4.0x installer will not offer the option to install to the HDD. And if you manually SYS the drive, it will not boot from it.
+
+MS-DOS 4.0x supports HDDs up to 4,095MB. It is also supposed to support a primary partition up to 2,047MB and a logical partition of 2,048MB. But creating partitions that large will result in numerous problems, typically in ``FORMAT`` giving a "Divide overflow" error. The solution, assuming your only going to have a single primary partition, is to create a HDD image no larger then 2014MB.
+
+In these examples we still use a 32MB HDD.
 
 ### Bare-bones install
 If you decide to do just an absolute minimal install, and effectively skip the MS-DOS 4.0x install program, you don't need to worry about the buggy MS-DOS 4.0x installer.
