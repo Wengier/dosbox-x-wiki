@@ -54,6 +54,9 @@ Unless noted otherwise, the PC-DOS and MS-DOS versions are equivalent for this d
 - MS-DOS version 7.1 (included in Windows 95 OSR2, 98 and 98SE)
   - First version to support FAT32
   - First version to support LBA for HDDs up to 2TB, although FDISK requires patch to support HDD size greater than 64GB
+  - Considered the best MS-DOS version to be used in modern systems. While unofficial, there is also standalone MS-DOS 7.1 installation package available
+- MS-DOS version 8.0 (included in Windows ME)
+  - Removed some features such as real-mode support, although there are patches to re-enable some of these features
 
 ### DOS editions
 MS-DOS was licensed by many clone manufacturers and in the early days these OEM editions were often 'personalized' to the manufacturer, and therefore it is possible that these older OEM specific editions don't work in DOSBox-X. Because of this, up to DOS version 3.3, it is typically easier to use the IBM PC-DOS versions in DOSBox-X.
